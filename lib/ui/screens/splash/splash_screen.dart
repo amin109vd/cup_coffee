@@ -1,5 +1,6 @@
 import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/generated/assets.dart';
+import 'package:cup_coffee/ui/screens/route/root_screen.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
     // Timer(const Duration(milliseconds: 2500), () {
     //   Navigator.pushReplacementNamed(context, RootScreen.tag);
     // });
-    //Future.delayed(Duration(milliseconds: 2500),
-    // () => Navigator.pushReplacementNamed(context, RootScreen.tag));
+    Future.delayed(Duration(milliseconds: 2500),
+    () => Navigator.pushReplacementNamed(context, RootScreen.tag));
   }
 
   @override
