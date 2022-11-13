@@ -1,5 +1,7 @@
+import 'package:cup_coffee/ui/screens/main/main_screen.dart';
 import 'package:cup_coffee/ui/screens/route/root_screen.dart';
 import 'package:cup_coffee/ui/screens/splash/splash_screen.dart';
+import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,14 +17,52 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primarySwatch: Colors.blue,
-            fontFamily: GoogleFonts.poppins().fontFamily),
-        home: SplashScreen(),
+            primaryColor: primaryColor,
+            primarySwatch: generateMaterialColorFromColor(primaryColor),
+            fontFamily: GoogleFonts.poppins().fontFamily,
+            scaffoldBackgroundColor: Colors.white,
+            textTheme: TextTheme(
+                headline1: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+                headline2: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+                headline3: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+                headline4: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+                headline5: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+              caption: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: textGray),
+              subtitle1: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: textGray),
+
+            ),
+            appBarTheme: AppBarTheme(
+              color: Colors.white,
+              elevation: 0,
+            )),
+        initialRoute: MainScreen.tag,
         routes: {
           SplashScreen.tag: (context) => SplashScreen(),
-          RootScreen.tag:(context)=>RootScreen(),
-
+          MainScreen.tag: (context) => MainScreen(),
+          RootScreen.tag: (context) => RootScreen(),
         });
   }
 }

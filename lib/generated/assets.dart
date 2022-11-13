@@ -28,6 +28,7 @@ class Assets {
   static const String imageCoffeeShop05 = 'assets/image/coffee_shop_05.jpg';
   static const String imageCoffeeShop06 = 'assets/image/coffee_shop_06.jpg';
   static const String imageCoffeeShop07 = 'assets/image/coffee_shop_07.jpg';
+  static const String imageMe = 'assets/image/me.JPG';
   static const String imageSplash = 'assets/image/splash.png';
   static const String jsonsLoading = 'assets/jsons/loading.json';
 
