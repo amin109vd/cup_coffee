@@ -1,6 +1,6 @@
 import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/generated/assets.dart';
-import 'package:cup_coffee/ui/screens/route/root_screen.dart';
+import 'package:cup_coffee/ui/screens/root/root_screen.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
 

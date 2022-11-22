@@ -1,5 +1,6 @@
 import 'package:cup_coffee/ui/screens/main/main_screen.dart';
-import 'package:cup_coffee/ui/screens/route/root_screen.dart';
+import 'package:cup_coffee/ui/screens/root/root_screen.dart';
+
 import 'package:cup_coffee/ui/screens/splash/splash_screen.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
               elevation: 0,
             )),
-        initialRoute: MainScreen.tag,
+        initialRoute: RootScreen.tag,
         routes: {
           SplashScreen.tag: (context) => SplashScreen(),
           MainScreen.tag: (context) => MainScreen(),

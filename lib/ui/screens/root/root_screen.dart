@@ -1,5 +1,6 @@
 import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/generated/assets.dart';
+import 'package:cup_coffee/ui/screens/main/main_screen.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,11 +15,18 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int _currentBottomNavigation = 0;
+  List<Widget> list=[
+    MainScreen(),
+    Container(color: Colors.green),
+    Container(color: Colors.green),
+    Container(color: Colors.green),
+    Container(color: Colors.green),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(color: Colors.green),
+      body: list[_currentBottomNavigation],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) => setState(() {
           _currentBottomNavigation = value;
