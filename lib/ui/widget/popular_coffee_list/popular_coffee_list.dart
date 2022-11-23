@@ -131,7 +131,7 @@ class ItemPopularCoffeeList extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline4,
                 ),
                 Text(
-                  '\$${coffeeModel.price}',
+                  '\$${coffeeModel.price?.values.first}',
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ],
