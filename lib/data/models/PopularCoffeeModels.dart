@@ -38,7 +38,7 @@ class PopularCoffeeModels {
     _title = json['title'];
     _images = json['images'] != null ? json['images'].cast<String>() : [];
     _rating = json['rating'];
-    _price = json['price'] != null ? json['price'] : [];
+    _price = json['price'] ?? [];
     _description = json['description'];
     _ingredients =
         json['ingredients'] != null ? json['ingredients'].cast<String>() : [];

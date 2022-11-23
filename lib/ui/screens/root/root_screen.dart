@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
-  static String tag = 'RootScreen'.rTag;
+  static const String tag = '/RootScreenRoute';
 
   @override
   State<RootScreen> createState() => _RootScreenState();

@@ -1,4 +1,5 @@
 import 'package:cup_coffee/data/models/PopularCoffeeModels.dart';
+import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/ui/widget/popular_coffee_list/popular_coffee_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,7 @@ class ItemPopularCoffeeList extends StatelessWidget {
             height: 180,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                      'https://raw.githubusercontent.com/mes71/fakeApi/master/${coffeeModel.images![0]}'),
+                  image: NetworkImage(coffeeModel.images![0].pictureGitHubPath),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: const [

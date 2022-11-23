@@ -19,7 +19,7 @@ class PopularCoffeeBloc extends Bloc<PopularCoffeeEvent, PopularCoffeeState> {
       try {
         emit(PopularCoffeeLoading());
         List<PopularCoffeeModels> coffeeList =
-            await serverRepository.getPopularListModels();
+            await serverRepository.getPopularCoffee();
         emit(PopularCoffeeSuccess(coffeeList));
       } on DioError catch (e) {
         emit(const PopularCoffeeFailure('error in connecting to server'));

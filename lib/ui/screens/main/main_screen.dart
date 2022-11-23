@@ -1,6 +1,7 @@
 import 'package:cup_coffee/data/repository/server_repository.dart';
 import 'package:cup_coffee/generated/assets.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
+import 'package:cup_coffee/ui/widget/nearest_coffee_shops/nearest_coffee_shop_bloc.dart';
 import 'package:cup_coffee/ui/widget/nearest_coffee_shops/nearest_coffee_shop_list.dart';
 import 'package:cup_coffee/ui/widget/popular_coffee_list/popular_coffee_bloc.dart';
 import 'package:cup_coffee/ui/widget/popular_coffee_list/popular_coffee_list.dart';
@@ -27,6 +28,13 @@ class _MainScreenState extends State<MainScreen> {
           create: (context) {
             var bloc = PopularCoffeeBloc(serverRepository: serverRepository);
             bloc.add(PopularCoffeeStarted());
+            return bloc;
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            var bloc = NearestCoffeeShopBloc(serverRepository);
+            bloc.add(NearestCoffeeShopStarted());
             return bloc;
           },
         )

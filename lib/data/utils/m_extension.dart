@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:flutter/widgets.dart';
 
 extension MEX on String {
-  String get rTag => '${this}Route';
-
   void toLog() => log(this);
+
+  String get pictureGitHubPath =>
+      'https://raw.githubusercontent.com/mes71/fakeApi/master/${this}';
 }
 
 extension MEXWidget on Widget {}
