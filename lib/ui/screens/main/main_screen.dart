@@ -1,4 +1,5 @@
 import 'package:cup_coffee/data/repository/server_repository.dart';
+import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/generated/assets.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:cup_coffee/ui/widget/nearest_coffee_shops/nearest_coffee_shop_bloc.dart';
@@ -124,15 +125,10 @@ class _MainScreenState extends State<MainScreen> {
                         hintText: 'Search anything',
                       ),
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    20.toHeight,
                     Text(
                       'Popular Coffee',
                       style: theme.textTheme.headline3,
-                    ),
-                    const SizedBox(
-                      height: 20,
                     ),
                   ],
                 ),
@@ -160,9 +156,6 @@ class _MainScreenState extends State<MainScreen> {
                               ?.copyWith(color: primaryColor),
                         ),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 12,
                     ),
                   ],
                 ),

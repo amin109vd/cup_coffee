@@ -2,10 +2,10 @@ import 'package:cup_coffee/data/models/NearestCoffeeShopModel.dart';
 import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:cup_coffee/ui/widget/nearest_coffee_shops/nearest_coffee_shop_bloc.dart';
+import 'package:cup_coffee/ui/widget/shimmer_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class NearestCoffeeShops extends StatefulWidget {
   const NearestCoffeeShops({Key? key}) : super(key: key);
@@ -22,14 +22,7 @@ class _NearestCoffeeShopsState extends State<NearestCoffeeShops> {
       builder: (context, state) {
         if (state is NearestCoffeeShopLoading ||
             state is NearestCoffeeShopInitial) {
-          return SizedBox(
-            height: 215,
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: const NearestCoffeeShopShimmer(),
-            ),
-          );
+          return ShimmerList();
         } else if (state is NearestCoffeeShopSuccess) {
           return NearestCoffeeShopList(list: state.list);
         } else {
@@ -49,52 +42,6 @@ class _NearestCoffeeShopsState extends State<NearestCoffeeShops> {
         }
       },
     );
-  }
-}
-
-class NearestCoffeeShopShimmer extends StatelessWidget {
-  const NearestCoffeeShopShimmer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => Container(
-              padding: index == 0 || index == 3
-                  ? EdgeInsets.only(
-                      left: index == 0 ? 20 : 0, right: index == 3 ? 20 : 0)
-                  : const EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 177,
-                    height: 154,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.grey),
-                  ),
-                  const SizedBox(
-                    height: 7,
-                  ),
-                  Container(
-                    child: Row(),
-                    height: 5,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  Container(
-                    child: Row(),
-                    height: 5,
-                    color: Colors.grey,
-                  )
-                ],
-              ),
-            ),
-        itemCount: 5);
   }
 }
 
@@ -164,16 +111,12 @@ class _NearestCoffeeShopListState extends State<NearestCoffeeShopList> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 7,
-                    ),
+                    7.toHeight,
                     Text(
                       widget.list[index].title!,
                       style: theme.textTheme.headline5,
                     ),
-                    const SizedBox(
-                      height: 2,
-                    ),
+                    2.toHeight,
                     Row(
                       children: [
                         const Icon(

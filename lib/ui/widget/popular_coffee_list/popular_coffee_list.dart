@@ -1,6 +1,7 @@
 import 'package:cup_coffee/data/models/PopularCoffeeModels.dart';
 import 'package:cup_coffee/data/utils/m_extension.dart';
 import 'package:cup_coffee/ui/widget/popular_coffee_list/popular_coffee_bloc.dart';
+import 'package:cup_coffee/ui/widget/shimmer_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,18 +18,40 @@ class _PopularCoffeeListState extends State<PopularCoffeeList> {
   Widget build(BuildContext context) {
     return BlocBuilder<PopularCoffeeBloc, PopularCoffeeState>(
       builder: (context, state) {
-        return SizedBox(
-          height: 245,
-          child: ListView.separated(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => state is PopularCoffeeSuccess
-                  ? ItemPopularCoffeeList(coffeeModel: state.list[index])
-                  : const ItemShimmerPopularCoffeeList(),
-              separatorBuilder: (context, index) => const SizedBox(width: 20),
-              itemCount: state is PopularCoffeeSuccess ? state.list.length : 5),
-        );
+        if (state is PopularCoffeeLoading || state is PopularCoffeeInitial) {
+          return ShimmerList(
+            height: 245,
+          );
+        } else if (state is PopularCoffeeSuccess) {
+          return SizedBox(
+            height: 245,
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => Container(
+                    padding: index == state.list.length - 1
+                        ? EdgeInsets.symmetric(horizontal: 20)
+                        : EdgeInsets.only(left: 20),
+                    child:
+                        ItemPopularCoffeeList(coffeeModel: state.list[index])),
+                itemCount: state.list.length),
+          );
+        }else{
+          return SizedBox(
+            height: 245,
+            child: Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(45),
+                  elevation: 0,
+                ),
+                child: const Text('Try Aging'),
+                onPressed: () {},
+              ),
+            ),
+          );
+        }
       },
     );
   }
