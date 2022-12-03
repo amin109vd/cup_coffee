@@ -1,6 +1,7 @@
+import 'package:cup_coffee/ui/screens/coffee/coffee_screen.dart';
+import 'package:cup_coffee/ui/screens/coffee_shop/coffee_shop_screen.dart';
 import 'package:cup_coffee/ui/screens/main/main_screen.dart';
 import 'package:cup_coffee/ui/screens/root/root_screen.dart';
-
 import 'package:cup_coffee/ui/screens/splash/splash_screen.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,8 @@ class MyApp extends StatelessWidget {
           SplashScreen.tag: (context) => SplashScreen(),
           MainScreen.tag: (context) => MainScreen(),
           RootScreen.tag: (context) => RootScreen(),
+          CoffeeScreen.tag: (context) => CoffeeScreen(),
+          CoffeeShopScreen.tag: (context) => CoffeeShopScreen()
         });
   }
 }

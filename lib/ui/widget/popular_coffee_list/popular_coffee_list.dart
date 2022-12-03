@@ -1,5 +1,6 @@
 import 'package:cup_coffee/data/models/PopularCoffeeModels.dart';
 import 'package:cup_coffee/data/utils/m_extension.dart';
+import 'package:cup_coffee/ui/screens/coffee/coffee_screen.dart';
 import 'package:cup_coffee/ui/widget/popular_coffee_list/popular_coffee_bloc.dart';
 import 'package:cup_coffee/ui/widget/shimmer_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,15 +30,24 @@ class _PopularCoffeeListState extends State<PopularCoffeeList> {
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Container(
-                    padding: index == state.list.length - 1
-                        ? EdgeInsets.symmetric(horizontal: 20)
-                        : EdgeInsets.only(left: 20),
-                    child:
-                        ItemPopularCoffeeList(coffeeModel: state.list[index])),
+                itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(CoffeeScreen.tag,
+                            arguments: state.list[index]);
+                      },
+                      child: Hero(
+                        tag: state.list[index].id!,
+                        child: Container(
+                            padding: index == state.list.length - 1
+                                ? EdgeInsets.symmetric(horizontal: 20)
+                                : EdgeInsets.only(left: 20),
+                            child: ItemPopularCoffeeList(
+                                coffeeModel: state.list[index])),
+                      ),
+                    ),
                 itemCount: state.list.length),
           );
-        }else{
+        } else {
           return SizedBox(
             height: 245,
             child: Center(

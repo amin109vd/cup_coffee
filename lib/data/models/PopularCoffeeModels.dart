@@ -110,4 +110,9 @@ class PopularCoffeeModels {
     map['location'] = _location;
     return map;
   }
+
+  @override
+  String toString() {
+    return 'PopularCoffeeModels{_id: $_id, _deliveredTime: $_deliveredTime, _title: $_title, _location: $_location, _images: $_images, _rating: $_rating, _price: $_price, _description: $_description, _ingredients: $_ingredients}';
+  }
 }
