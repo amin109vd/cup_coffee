@@ -1,9 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cup_coffee">
+
+
+
    <application
         android:label="cup_coffee"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+                  android:value="AIzaSyCaA8Xhg62osV-5k_fBQYsQ4mFTlko4lS0"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

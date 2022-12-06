@@ -7,7 +7,7 @@ import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -44,6 +44,10 @@ class MyApp extends StatelessWidget {
                   color: Colors.black),
               headline5: TextStyle(
                   fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black),
+              headline6: TextStyle(
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: Colors.black),
               caption: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:cup_coffee/data/models/NearestCoffeeShopModel.dart';
 import 'package:cup_coffee/data/utils/m_extension.dart';
+import 'package:cup_coffee/ui/screens/coffee_shop/coffee_shop_screen.dart';
 import 'package:cup_coffee/ui/utils/colors.dart';
 import 'package:cup_coffee/ui/widget/nearest_coffee_shops/nearest_coffee_shop_bloc.dart';
 import 'package:cup_coffee/ui/widget/shimmer_list.dart';
@@ -62,75 +63,81 @@ class _NearestCoffeeShopListState extends State<NearestCoffeeShopList> {
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => Container(
-                padding: index == 2
-                    ? const EdgeInsets.symmetric(horizontal: 20)
-                    : const EdgeInsets.only(left: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 230,
-                      height: 170,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: Image.network(widget
-                                      .list[index].images![0].pictureGitHubPath)
-                                  .image)),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              width: 73,
-                              padding: const EdgeInsets.all(1.3),
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: primaryColor.withOpacity(0.6),
-                                  borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(15),
-                                      bottomLeft: Radius.circular(15))),
-                              child: Row(
-                                children: [
-                                  const Icon(
-                                    Icons.location_on_outlined,
-                                    size: 16,
-                                  ),
-                                  Text(
-                                    "${widget.list[index].distance} Km",
-                                    style: theme.textTheme.subtitle1
-                                        ?.copyWith(color: Colors.black),
-                                  )
-                                ],
+          itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(CoffeeShopScreen.tag,
+                      arguments: widget.list[index]);
+                },
+                child: Container(
+                  padding: index == 2
+                      ? const EdgeInsets.symmetric(horizontal: 20)
+                      : const EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 230,
+                        height: 170,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: Image.network(widget.list[index]
+                                        .images![0].pictureGitHubPath)
+                                    .image)),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: Container(
+                                width: 73,
+                                padding: const EdgeInsets.all(1.3),
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: primaryColor.withOpacity(0.6),
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(15),
+                                        bottomLeft: Radius.circular(15))),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      size: 16,
+                                    ),
+                                    Text(
+                                      "${widget.list[index].distance} Km",
+                                      style: theme.textTheme.subtitle1
+                                          ?.copyWith(color: Colors.black),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          )
+                            )
+                          ],
+                        ),
+                      ),
+                      7.toHeight,
+                      Text(
+                        widget.list[index].title!,
+                        style: theme.textTheme.headline5,
+                      ),
+                      2.toHeight,
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 14,
+                          ),
+                          Text(
+                            '${widget.list[index].rating}/ ${widget.list[index].ratingCount}  ratings',
+                            style: theme.textTheme.caption,
+                          ),
                         ],
                       ),
-                    ),
-                    7.toHeight,
-                    Text(
-                      widget.list[index].title!,
-                      style: theme.textTheme.headline5,
-                    ),
-                    2.toHeight,
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                          size: 14,
-                        ),
-                        Text(
-                          '${widget.list[index].rating}/ ${widget.list[index].ratingCount}  ratings',
-                          style: theme.textTheme.caption,
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
           itemCount: 3),

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cup_coffee/data/utils/m_extension.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImageSlider extends StatefulWidget {
@@ -22,14 +22,14 @@ class _ImageSliderState extends State<ImageSlider> {
       width: size.width,
       child: PageView(
         physics: BouncingScrollPhysics(),
-    children: List<Widget>.generate(widget.images.length,
-            (index) => ImageSliderItem(imagesUrl: widget.images[index]))
-        .toList(),
-    onPageChanged: (value) {
-      setState(() {
-        currentIndexPage = value;
-      });
-    },
+        children: List<Widget>.generate(widget.images.length,
+                (index) => ImageSliderItem(imagesUrl: widget.images[index]))
+            .toList(),
+        onPageChanged: (value) {
+          setState(() {
+            currentIndexPage = value;
+          });
+        },
       ),
     );
   }
@@ -41,20 +41,44 @@ class ImageSliderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      child: Card(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        elevation: 2,
-        margin: EdgeInsets.all(0),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        child: CachedNetworkImage(
-          imageUrl:
-              'https://raw.githubusercontent.com/mes71/fakeApi/master/$imagesUrl',
-          fit: BoxFit.cover,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Container(
+          padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Card(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            elevation: 2,
+            margin: EdgeInsets.all(0),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://raw.githubusercontent.com/mes71/fakeApi/master/$imagesUrl',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-      ),
+        Positioned(
+            top: 15,
+            left: 15,
+            right: 15,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(CupertinoIcons.arrow_left)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(CupertinoIcons.heart)),
+              ],
+            ))
+      ],
     );
   }
 }
